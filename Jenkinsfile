@@ -81,6 +81,7 @@ pipeline {
         // before we run the cypress tests
         writeFile file: 'integration-tests.sh', text: [
           'export PATH=`pwd`/node_modules/.bin:$PATH',
+          '(touch top.log; while sleep 3; do top -b -n 1 >> top.log; done)&',
           'http-server -p 4200 dist&',
           'SERVER_PID=$!',
           'cypress run --reporter junit --reporter-options \'mochaFile=cypress/results.xml\'',
@@ -104,6 +105,7 @@ pipeline {
       post {
         always {
           archiveArtifacts 'cypress/**/*'
+          archiveArtifacts 'top.log'
           junit 'cypress/*.xml'
         }
       }
