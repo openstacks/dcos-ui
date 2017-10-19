@@ -9,7 +9,6 @@ import Loader from "#SRC/js/components/Loader";
 import NodesTableHeaderLabels from "#SRC/js/constants/NodesTableHeaderLabels";
 import ResourceTableUtil from "#SRC/js/utils/ResourceTableUtil";
 import ProgressBar from "#SRC/js/components/ProgressBar";
-import StringUtil from "#SRC/js/utils/StringUtil";
 import TableUtil from "#SRC/js/utils/TableUtil";
 import UnitHealthUtil from "#SRC/js/utils/UnitHealthUtil";
 
@@ -78,7 +77,7 @@ var NodesTable = React.createClass({
 
     return (
       <span className={health.classNames}>
-        {StringUtil.capitalize(health.title)}
+        {health.title}
       </span>
     );
   },
@@ -146,7 +145,7 @@ var NodesTable = React.createClass({
         render: this.renderHealth,
         sortable: true,
         sortFunction: getHealthSorting,
-        heading: ResourceTableUtil.renderHeading({ health: "HEALTH" })
+        heading: ResourceTableUtil.renderHeading({ health: "Health" })
       },
       {
         className,

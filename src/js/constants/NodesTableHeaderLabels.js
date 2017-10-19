@@ -1,11 +1,11 @@
 var NodesTableHeaderLabels = {
   cpus: "CPU",
-  disk: "DISK",
-  health: "HEALTH",
-  hostname: "HOSTNAME",
-  mem: "MEM",
-  region: "REGION",
-  TASK_RUNNING: "TOTAL TASKS"
+  disk: "Disk",
+  health: "Health",
+  hostname: "Name",
+  mem: "Mem",
+  region: "Region",
+  TASK_RUNNING: "Tasks"
 };
 
 module.exports = NodesTableHeaderLabels;
