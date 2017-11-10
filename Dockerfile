@@ -33,6 +33,10 @@ RUN set -x \
   # Post-install java certificates
   /var/lib/dpkg/info/ca-certificates-java.postinst configure \
 
+ # Install npm dependencies
+  && cd /dcos-ui \
+  && npm install -g git://github.com/johntron/http-server.git#proxy-secure-flag \
+
   # Install dcos-launch
   && curl 'https://downloads.dcos.io/dcos-test-utils/bin/linux/dcos-launch' > /usr/local/bin/dcos-launch \
   && chmod +x /usr/local/bin/dcos-launch \
