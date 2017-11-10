@@ -234,10 +234,7 @@ var DashboardPage = React.createClass({
               footer={this.getViewAllServicesBtn()}
               footerClass="text-align-center"
             >
-              <ServiceList
-                healthProcessed={DCOSStore.serviceDataReceived}
-                services={this.getServicesList()}
-              />
+              <ServiceList services={this.getServicesList()} />
             </Panel>
           </div>
           <div className={columnClasses}>

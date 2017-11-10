@@ -5,6 +5,7 @@ const ReactDOM = require("react-dom");
 
 const ServiceList = require("../ServiceList");
 const ServiceTree = require("../../structs/ServiceTree");
+const Application = require("../../structs/Application");
 
 describe("ServiceList", function() {
   describe("#shouldComponentUpdate", function() {
@@ -12,10 +13,7 @@ describe("ServiceList", function() {
       var services = new ServiceTree({ items: [{ name: "foo" }] });
       this.container = global.document.createElement("div");
       this.instance = ReactDOM.render(
-        <ServiceList
-          services={services.getServices().getItems()}
-          healthProcessed={false}
-        />,
+        <ServiceList services={services.getServices().getItems()} />,
         this.container
       );
     });
@@ -42,10 +40,7 @@ describe("ServiceList", function() {
       var services = new ServiceTree({ items: [{ name: "foo" }] });
       this.container = global.document.createElement("div");
       this.instance = ReactDOM.render(
-        <ServiceList
-          services={services.getServices().getItems()}
-          healthProcessed={false}
-        />,
+        <ServiceList services={services.getServices().getItems()} />,
         this.container
       );
     });
@@ -55,7 +50,22 @@ describe("ServiceList", function() {
     });
 
     it("returns services that have a value of two elements", function() {
-      var services = new ServiceTree({ items: [{ name: "foo" }] })
+      var services = new ServiceTree({
+        items: [
+          new Application({
+            name: "foo",
+            deployments: [
+              {
+                id: "some-id"
+              }
+            ],
+            queue: {
+              delay: true
+            },
+            instances: 10
+          })
+        ]
+      })
         .getServices()
         .getItems();
       var result = this.instance.getServices(services, false);
